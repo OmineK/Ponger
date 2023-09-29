@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class GameBall : MonoBehaviour
 {
-    [SerializeField] float ballXDirection;
-    [SerializeField] float ballYDirection;
     [SerializeField] float ballSpeed;
 
-    bool canMove = false;
+    public float ballXDirection { get; private set; } = 1;
+    public bool canMove { get; private set; } = false;
+
+    float ballYDirection = 1;
+
     Rigidbody2D rb;
 
     void Awake()
@@ -57,7 +59,8 @@ public class GameBall : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
             ballXDirection *= -1;
 
-        //TODO: Add enemy (computer) collision
+        if (collision.gameObject.GetComponent<Enemy>() != null)
+            ballXDirection *= -1;
 
         //TODO: remove the following IF after testing
         if (transform.position.x < collision.transform.position.x && collision.transform.position.y == 0)
