@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float playerPositionLimit;
+    [SerializeField] float playerPositionAfterLimit;
     
     float yInput;
 
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponentInChildren<Rigidbody2D>();
     }
 
     void FixedUpdate()
@@ -42,9 +43,9 @@ public class Player : MonoBehaviour
     void PlayerPositionRestriction()
     {
         if (transform.position.y >= playerPositionLimit)
-            transform.position = new Vector3(transform.position.x, (-playerPositionLimit + 0.1f));
+            transform.position = new Vector3(transform.position.x, -playerPositionAfterLimit);
 
         if (transform.position.y <= -playerPositionLimit)
-            transform.position = new Vector3(transform.position.x, (playerPositionLimit - 0.1f));
+            transform.position = new Vector3(transform.position.x, playerPositionAfterLimit);
     }
 }
