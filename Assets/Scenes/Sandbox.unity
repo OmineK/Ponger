@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f590e9f14af0248b506720509687e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 5.48
+  enemySpeed: 5.45
   gameBall: {fileID: 1845945656}
 --- !u!50 &589557539
 Rigidbody2D:

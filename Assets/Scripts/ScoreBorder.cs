@@ -14,6 +14,12 @@ public class ScoreBorder : MonoBehaviour
         else
             gameManager.playerScore++;
 
+        if (gameManager.playerScore == 11 || gameManager.enemyScore == 11)
+        {
+            gameManager.GameOver();
+            return;
+        }
+
         ResetBall(collision.gameObject.GetComponent<GameBall>());
     }
 

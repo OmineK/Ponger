@@ -7,13 +7,20 @@ public class GameManager : MonoBehaviour
     public int playerScore;
     public int enemyScore;
 
-    void GameOver()
+    public void GameOver()
     {
-        //TODO: Display canvas GameOver and button "Try again"
-    }
+        Time.timeScale = 0;
 
-    void LoadBetterEnemy()
-    {
-        //TODO: Display canvas Congratz and button "Load a better enemy!"
+        if (enemyScore == 11)
+        {
+            Debug.Log("Game Over");
+            //TODO: Display canvas GameOver and button "Try again"
+        }
+
+        if (playerScore == 11)
+        {
+            Debug.Log("Congratz!");
+            //TODO: Display canvas Congratz and button "Load a better enemy!"
+        }
     }
 }
