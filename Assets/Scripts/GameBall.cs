@@ -9,7 +9,7 @@ public class GameBall : MonoBehaviour
     [SerializeField] float ballSpeed;
 
     public float ballXDirection { get; private set; } = 1;
-    public bool canMove { get; private set; } = false;
+    public bool canMove = false;
 
     float ballYDirection = 1;
 
@@ -22,15 +22,18 @@ public class GameBall : MonoBehaviour
 
     void Start()
     {
-        SetupRandomYDirection();
-
-        Invoke(nameof(SetupBallCanMove), 2f);
+        newRoundStart();
     }
 
     void FixedUpdate()
     {
-        if (canMove)
-            BallMove();
+        BallMove();
+    }
+
+    public void newRoundStart()
+    {
+        Invoke(nameof(SetupBallCanMove), 2f);
+        SetupRandomYDirection();
     }
 
     void SetupRandomYDirection()
@@ -45,7 +48,10 @@ public class GameBall : MonoBehaviour
 
     void BallMove()
     {
-        rb.velocity = new Vector2(ballSpeed * ballXDirection, ballSpeed * ballYDirection);
+        if (canMove)
+            rb.velocity = new Vector2(ballSpeed * ballXDirection, ballSpeed * ballYDirection);
+        else
+            rb.velocity = Vector3.zero;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -60,14 +66,6 @@ public class GameBall : MonoBehaviour
             ballXDirection *= -1;
 
         if (collision.gameObject.GetComponent<Enemy>() != null)
-            ballXDirection *= -1;
-
-        //TODO: remove the following IF after testing
-        if (transform.position.x < collision.transform.position.x && collision.transform.position.y == 0)
-            ballXDirection *= -1;
-
-        //TODO: remove the following IF after testing
-        if (transform.position.x > collision.transform.position.x && collision.transform.position.y == 0)
             ballXDirection *= -1;
     }
 
