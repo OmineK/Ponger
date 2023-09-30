@@ -25,10 +25,33 @@ public class ScoreBorder : MonoBehaviour
 
         currentBall.canMove = false;
 
-        if (gameManager.playerScore == 11 || gameManager.enemyScore == 11)
+        // Check if player has won to 11
+        if (gameManager.playerScore == 11 && gameManager.enemyScore <= 9)
+        {
+            gameManager.PlayerWon();
+            return;
+        }
+
+        //check if enemy has won to 11
+        if (gameManager.enemyScore == 11 && gameManager.playerScore <= 9)
         {
             gameManager.GameOver();
             return;
+        }
+
+        //checks the win by 2 point difference after player&enemy reach 10+ points
+        if (gameManager.playerScore >= 10 && gameManager.enemyScore >= 10)
+        {
+            if (gameManager.playerScore - gameManager.enemyScore == 2)
+            {
+                gameManager.PlayerWon();
+                return;
+            }
+            else if (gameManager.enemyScore - gameManager.playerScore == 2)
+            {
+                gameManager.GameOver();
+                return;
+            }
         }
 
         currentBall.ResetBall();

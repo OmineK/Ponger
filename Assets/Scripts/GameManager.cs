@@ -49,21 +49,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (enemyScore == 11)
-        {
-            ui.enemyWinPanel.SetActive(true);
+        ui.enemyWinPanel.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
-        if (playerScore == 11)
-        {
-            ui.playerWinPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+    public void PlayerWon()
+    {
+        ui.playerWinPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         Time.timeScale = 0;
     }
