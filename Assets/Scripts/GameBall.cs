@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,15 +7,17 @@ public class GameBall : MonoBehaviour
     [SerializeField] float ballSpeed;
 
     public float ballXDirection { get; private set; } = 1;
-    public bool canMove = false;
+    [NonSerialized] public bool canMove = false;
 
     float ballYDirection = 1;
 
     Rigidbody2D rb;
+    AudioSource audioSource;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -48,7 +48,7 @@ public class GameBall : MonoBehaviour
 
     void SetupRandomYDirection()
     {
-        int randomYStartDir = Random.Range(0, 2);
+        int randomYStartDir = UnityEngine.Random.Range(0, 2);
 
         if (randomYStartDir == 0)
             return;
@@ -59,16 +59,36 @@ public class GameBall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (transform.position.y < collision.transform.position.y && collision.transform.position.x == 0)
+        {
             ballYDirection *= -1;
+            PlayRandomPitchSound();
+        }
 
         if (transform.position.y > collision.transform.position.y && collision.transform.position.x == 0)
+        {
             ballYDirection *= -1;
+            PlayRandomPitchSound();
+        }
 
         if (collision.gameObject.GetComponent<Player>() != null)
+        {
             ballXDirection *= -1;
+            PlayRandomPitchSound();
+        }
 
         if (collision.gameObject.GetComponent<Enemy>() != null)
+        {
             ballXDirection *= -1;
+            PlayRandomPitchSound();
+        }
+    }
+
+    void PlayRandomPitchSound()
+    {
+        audioSource.Play();
+
+        float randomPitch = UnityEngine.Random.Range(0.9f, 1.2f);
+        audioSource.pitch = randomPitch;
     }
 
     public void ResetBall()
