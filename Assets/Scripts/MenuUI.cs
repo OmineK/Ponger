@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
@@ -12,16 +13,18 @@ public class MenuUI : MonoBehaviour
 
     public void NewGameButton()
     {
-
+        LoadNextScene();
     }
 
     public void ExitGameButton()
     {
-
+        Application.Quit();
     }
 
-    void LoadGameplayScene()
+    void LoadNextScene()
     {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
+        SceneManager.LoadScene(currentScene + 1);
     }
 }
