@@ -13,11 +13,13 @@ public class GameBall : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource audioSource;
+    ParticleSystem ballParticle;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        ballParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     void Start()
@@ -28,6 +30,7 @@ public class GameBall : MonoBehaviour
     void FixedUpdate()
     {
         BallMove();
+        PlayBallParticles();
     }
 
     public void newRoundStart()
@@ -42,6 +45,17 @@ public class GameBall : MonoBehaviour
             rb.velocity = new Vector2(ballSpeed * ballXDirection, ballSpeed * ballYDirection);
         else
             rb.velocity = Vector3.zero;
+    }
+
+    void PlayBallParticles()
+    {
+        if (canMove)
+            ballParticle.Play();
+        else
+        {
+            ballParticle.Pause();
+            ballParticle.Clear();
+        }
     }
 
     void SetupBallCanMove() => canMove = true;
