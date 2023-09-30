@@ -6,13 +6,20 @@ using UnityEngine;
 public class ScoreBorder : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+    [SerializeField] UI ui;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.transform.position.x > transform.position.x)
+        {
             gameManager.enemyScore++;
+            ui.UpdateEnemyScore();
+        }
         else
+        {
             gameManager.playerScore++;
+            ui.UpdatePlayerScore();
+        }
 
         if (gameManager.playerScore == 11 || gameManager.enemyScore == 11)
         {

@@ -22,5 +22,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Congratz!");
             //TODO: Display canvas Congratz and button "Load a better enemy!"
         }
+
+        //TODO: Reset Score
     }
 }
