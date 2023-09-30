@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -65,12 +66,11 @@ public class UI : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public void UnpauseGame()
-    {
-        gamePausePanel.SetActive(false);
+    public void UnpauseGameUI() => gameManager.UnpauseGame();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+    public void GoBackToMenuButton()
+    {
+        SceneManager.LoadScene("Menu");
 
         Time.timeScale = 1;
     }
