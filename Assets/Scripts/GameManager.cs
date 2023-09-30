@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,22 @@ public class GameManager : MonoBehaviour
 
     public int playerScore;
     public int enemyScore;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            GamePause();
+    }
+
+    void GamePause()
+    {
+        ui.gamePausePanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0;
+    }
 
     public void GameOver()
     {

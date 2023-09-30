@@ -11,11 +11,13 @@ public class UI : MonoBehaviour
 
     public GameObject playerWinPanel;
     public GameObject enemyWinPanel;
+    public GameObject gamePausePanel;
 
     void Start()
     {
         playerWinPanel.SetActive(false);
         enemyWinPanel.SetActive(false);
+        gamePausePanel.SetActive(false);
 
         UpdatePlayerScore();
         UpdateEnemyScore();
@@ -61,5 +63,15 @@ public class UI : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void UnpauseGame()
+    {
+        gamePausePanel.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
     }
 }

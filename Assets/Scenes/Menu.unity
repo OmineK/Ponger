@@ -786,12 +786,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Control: Up/Down arrows
 
+    Pause game: ESC
+
 
     Win condition:
 
-    reach 11 points or in
-    case of a tie (10:10), to win you must score a difference of 2 points - e.g.
-    (14:12)
+    reach
+    11 points or in case of a tie (10:10), to win you must score a difference of
+    2 points - e.g. (14:12)
 
 
     If you win, you can play with a better enemy'
@@ -821,8 +823,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 19
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
