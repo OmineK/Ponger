@@ -36,6 +36,16 @@ public class GameBall : MonoBehaviour
         SetupRandomYDirection();
     }
 
+    void BallMove()
+    {
+        if (canMove)
+            rb.velocity = new Vector2(ballSpeed * ballXDirection, ballSpeed * ballYDirection);
+        else
+            rb.velocity = Vector3.zero;
+    }
+
+    void SetupBallCanMove() => canMove = true;
+
     void SetupRandomYDirection()
     {
         int randomYStartDir = Random.Range(0, 2);
@@ -44,14 +54,6 @@ public class GameBall : MonoBehaviour
             return;
         else if (randomYStartDir == 1)
             ballYDirection *= -1;
-    }
-
-    void BallMove()
-    {
-        if (canMove)
-            rb.velocity = new Vector2(ballSpeed * ballXDirection, ballSpeed * ballYDirection);
-        else
-            rb.velocity = Vector3.zero;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -69,5 +71,9 @@ public class GameBall : MonoBehaviour
             ballXDirection *= -1;
     }
 
-    void SetupBallCanMove() => canMove = true;
+    public void ResetBall()
+    {
+        transform.position = Vector3.zero;
+        newRoundStart();
+    }
 }

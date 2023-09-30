@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float enemySpeed;
     [SerializeField] GameBall gameBall;
+
+    public float enemySpeed;
 
     Rigidbody2D rb;
 
@@ -50,7 +51,6 @@ public class Enemy : MonoBehaviour
                 rb.velocity = new Vector3(0, -enemySpeed / 2, 0);
             else
                 rb.velocity = new Vector3(0, enemySpeed / 2, 0);
-
         }    
     }
 }

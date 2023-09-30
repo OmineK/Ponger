@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] UI ui;
+    [SerializeField] GameBall gameBall;
+    [SerializeField] Enemy enemy;
+
     public int playerScore;
     public int enemyScore;
 
     public void GameOver()
     {
-        Time.timeScale = 0;
-
         if (enemyScore == 11)
         {
-            Debug.Log("Game Over");
-            //TODO: Display canvas GameOver and button "Try again"
+            ui.enemyWinPanel.SetActive(true);
         }
 
         if (playerScore == 11)
         {
-            Debug.Log("Congratz!");
-            //TODO: Display canvas Congratz and button "Load a better enemy!"
+            ui.playerWinPanel.SetActive(true);
         }
 
-        //TODO: Reset Score
+        Time.timeScale = 0;
     }
+
+    public void ResetScore()
+    {
+        enemyScore = 0;
+        playerScore = 0;
+    }
+
+    public void ResetBall() => gameBall.ResetBall();
+
+    public void UpgradeEnemy() => enemy.enemySpeed += 0.1f;
 }
