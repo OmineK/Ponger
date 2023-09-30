@@ -16,11 +16,17 @@ public class GameManager : MonoBehaviour
         if (enemyScore == 11)
         {
             ui.enemyWinPanel.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         if (playerScore == 11)
         {
             ui.playerWinPanel.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         Time.timeScale = 0;

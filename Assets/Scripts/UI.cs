@@ -19,6 +19,9 @@ public class UI : MonoBehaviour
 
         UpdatePlayerScore();
         UpdateEnemyScore();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void UpdatePlayerScore()
@@ -38,7 +41,7 @@ public class UI : MonoBehaviour
     }
 
     public void LoadBetterEnemyButton()
-    {  
+    {
         gameManager.UpgradeEnemy();
 
         playerWinPanel.SetActive(false);
@@ -55,5 +58,8 @@ public class UI : MonoBehaviour
         UpdateEnemyScore();
 
         gameManager.ResetBall();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

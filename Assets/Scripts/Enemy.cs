@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     void EnemyMoveAI()
     {
+        if (gameBall == null) { return; }
+
         if (gameBall.canMove == false)
         {
             rb.velocity = Vector3.zero;
